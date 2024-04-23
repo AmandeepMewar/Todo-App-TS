@@ -1,0 +1,53 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.8rem;
+  background-color: rgba(26, 26, 26, 0.833);
+  gap: 2rem;
+}
+
+.socials {
+  display: flex;
+  gap: 2rem;
+}
+
+.links {
+  width: 3.8rem;
+  height: 2.4rem;
+  background-color: rgb(83, 83, 83);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.4rem;
+}
+
+.logo {
+  height: 1.8rem;
+  width: 1.8rem;
+  color: rgb(173, 173, 173);
+}
+
+.circle {
+  display: flex;
+  gap: 1rem;
+  .first {
+    border-radius: 50%;
+    height: 1.3rem;
+    width: 1.3rem;
+    background-color: #b13028;
+  }
+
+  .second {
+    border-radius: 50%;
+    height: 1.3rem;
+    width: 1.3rem;
+    background-color: #b19406;
+  }
+
+  .third {
+    border-radius: 50%;
+    height: 1.3rem;
+    width: 1.3rem;
+    background-color: #21913d;
+  }
+}
