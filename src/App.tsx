@@ -1,11 +1,11 @@
-import Header from "./components/Header/Header";
+import Container from "./components/Container/Container";
 import NavBar from "./components/NavBar/NavBar";
 
 function App() {
   return (
     <>
       <NavBar />
-      <Header />
+      <Container />
     </>
   );
 }

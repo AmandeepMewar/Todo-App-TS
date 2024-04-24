@@ -13,12 +13,20 @@ const Header = () => {
       </div>
 
       <div className={styles["socials"]}>
-        <div className={styles["links"]}>
+        <a
+          href="https://www.linkedin.com/in/amandeepmewar/"
+          target="blank"
+          className={styles["links"]}
+        >
           <FaLinkedin className={styles["logo"]} />
-        </div>
-        <div className={styles["links"]}>
+        </a>
+        <a
+          href="https://github.com/AmandeepMewar"
+          target="blank"
+          className={styles["links"]}
+        >
           <FiGithub className={styles["logo"]} />
-        </div>
+        </a>
       </div>
     </header>
   );
