@@ -8,10 +8,15 @@ const Container = () => {
   return (
     <div className={styles["container"]}>
       <div className={styles["box"]}>
-        <Header />
+        <div className={styles["header"]}>
+          <Header />
+        </div>
+
         <div className={styles["content"]}>
           <InputField />
-          <Todos />
+          <div className={styles["todo-list"]}>
+            <Todos />
+          </div>
         </div>
       </div>
     </div>

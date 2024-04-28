@@ -4,13 +4,51 @@
 
 .todo {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #343a40;
+  margin-top: 1rem;
+  border-radius: 2rem;
+  transition: transform 0.1s ease;
+}
+
+.todo-upper {
+  width: 100%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 0.6rem;
-  padding: 1rem 0.8rem 0 1rem;
+  padding: 1rem 2rem 0.6rem 2rem;
+  background-color: #343a40;
+
+  border-radius: 2rem;
+  transition: transform 0.1s ease;
+}
+
+.todo-lower {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem 0.6rem 2rem;
+  align-items: flex-start;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-end;
+  font-weight: bold;
+}
+
+.todo:hover {
+  transform: scale(1.01);
 }
 
 .left {
+  width: 70%;
   display: flex;
   gap: 1rem;
 }
@@ -26,4 +64,27 @@
     width: 1.5rem;
     color: var(--clr-primary);
   }
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  height: 2.6rem;
+  width: 2.6rem;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #343a40;
+  }
+}
+
+.active {
+  transform: rotate(180deg);
 }

@@ -10,6 +10,10 @@
   --clr-quaternary: #3c424a;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -31,14 +35,14 @@ body {
   background-image: url("./assets/mojave.jpg");
   background-position: center;
   background-size: cover;
-  overflow-y: hidden;
 }
 
 li {
   list-style: none;
 }
 
-input {
+input,
+textarea {
   border: none;
   outline: none;
 }
