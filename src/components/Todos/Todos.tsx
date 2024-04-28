@@ -47,7 +47,9 @@ const Todos = () => {
                 className={styles["checkbox"]}
                 onClick={() => {
                   ToggleTodoCompleted(todo.todoId);
-                  showDescription.show && handleDescription(todo.todoId);
+                  showDescription.show &&
+                    showDescription.id === todo.todoId &&
+                    handleDescription(todo.todoId);
                 }}
               >
                 {todo.todoCompleted ? (
