@@ -1,15 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { TodoProps, TodoTypes, TodoContextProps } from "../types/Types";
 
 const TodoContext = createContext<TodoContextProps | null>(null);
 
-const defaultValue: TodoTypes[] = [
+const defaultTodos: TodoTypes[] = [
   {
     todoId: "1111",
     todoTitle: "Getting Started with todos",
     todoDescription: "This is a sample todo description",
     todoCompleted: false,
-    todoDate: "2022-04-28",
+    todoDate: "2024-04-28",
   },
 
   {
@@ -17,13 +17,13 @@ const defaultValue: TodoTypes[] = [
     todoTitle: "Add New Todos",
     todoDescription: "Add todos Description for New Todos",
     todoCompleted: false,
-    todoDate: "2022-04-28",
+    todoDate: "2024-04-28",
   },
   {
     todoId: "3333",
     todoTitle: "Checkout my Github!",
     todoCompleted: false,
-    todoDate: "2022-04-28",
+    todoDate: "2024-04-28",
   },
 ];
 
@@ -38,17 +38,23 @@ const useTodoContext = () => {
 };
 
 const TodoProvider = ({ children }: TodoProps) => {
-  const [todos, setTodos] = useState<TodoTypes[]>(defaultValue);
+  const [todos, setTodos] = useState<TodoTypes[]>(() => {
+    const storedTodosString = localStorage.getItem("cachedTodos");
+    const storedTodos = storedTodosString
+      ? JSON.parse(storedTodosString)
+      : null;
+    return storedTodos || defaultTodos;
+  });
 
   const AddTodos = (newTodo: TodoTypes) => {
     setTodos([...todos, newTodo]);
   };
 
-  const DeleteTodos = (todoId: string) => {
+  const DeleteTodos = (todoId: string | undefined) => {
     setTodos(todos.filter((todo) => todo.todoId !== todoId));
   };
 
-  const ToggleTodoCompleted = (todoId: string) => {
+  const ToggleTodoCompleted = (todoId: string | undefined) => {
     setTodos(
       todos.map((todo) => {
         if (todo.todoId === todoId) {
@@ -58,6 +64,10 @@ const TodoProvider = ({ children }: TodoProps) => {
       })
     );
   };
+
+  useEffect(() => {
+    localStorage.setItem("cachedTodos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <TodoContext.Provider

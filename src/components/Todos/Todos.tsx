@@ -8,18 +8,37 @@ import { FaAngleDown } from "react-icons/fa";
 import { useTodoContext } from "../../context/TodoContext";
 import { MdDateRange } from "react-icons/md";
 
+import { descriptionTypes } from "../../types/Types";
+
 const Todos = () => {
   const { todos, DeleteTodos, ToggleTodoCompleted } = useTodoContext();
+  const [showDescription, setShowDescription] = useState<descriptionTypes>({
+    id: "",
+    show: false,
+  });
+
+  const handleDescription = (id: string | undefined) => {
+    if (showDescription.id === id) {
+      setShowDescription({
+        id: id,
+        show: !showDescription.show,
+      });
+    } else {
+      setShowDescription({
+        id: id,
+        show: true,
+      });
+    }
+  };
 
   return (
     <div className={styles["todos-page"]}>
       {todos?.map((todo, i) => (
-        <div className={styles["todo"]}>
+        <div className={styles["todo"]} key={i}>
           <div
-            key={i}
             className={styles["todo-upper"]}
             style={{
-              backgroundColor: todo.todoCompleted ? "#343a40" : "#202122",
+              backgroundColor: todo.todoCompleted ? "#282a2e" : "#202122",
               textDecoration: todo.todoCompleted ? "line-through" : "none",
             }}
           >
@@ -28,6 +47,7 @@ const Todos = () => {
                 className={styles["checkbox"]}
                 onClick={() => {
                   ToggleTodoCompleted(todo.todoId);
+                  showDescription.show && handleDescription(todo.todoId);
                 }}
               >
                 {todo.todoCompleted ? (
@@ -39,12 +59,16 @@ const Todos = () => {
               {todo.todoTitle}
             </div>
             <div className={styles["right"]}>
-              <FaAngleDown
-                onClick={() => ToggleTodoCompleted(todo.todoId)}
-                className={`${styles["icon"]} ${
-                  todo.todoCompleted ? styles["active"] : ""
-                }`}
-              />
+              {!todo.todoCompleted && (
+                <FaAngleDown
+                  onClick={() => handleDescription(todo.todoId)}
+                  className={`${styles["icon"]} ${
+                    showDescription.id === todo.todoId && showDescription.show
+                      ? styles["active"]
+                      : ""
+                  }`}
+                />
+              )}
               <MdDeleteForever
                 className={styles["icon"]}
                 onClick={() => {
@@ -53,7 +77,7 @@ const Todos = () => {
               />
             </div>
           </div>
-          {todo.todoCompleted && (
+          {showDescription.id === todo.todoId && showDescription.show && (
             <div className={styles["todo-lower"]}>
               <p>{todo.todoDescription}</p>
               <p className={styles["date"]}>

@@ -8,6 +8,11 @@ export type TodoTypes = {
   todoDate?: string;
 };
 
+export type descriptionTypes = {
+  id: string | undefined;
+  show: boolean;
+};
+
 export type TodoProps = {
   children: ReactNode;
 };
